@@ -15,8 +15,30 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPES)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('project03')
 
-votes = SHEET.worksheet('Votes')
+def get_votes_data():
+    """
+    Get votes figures input from the user.
+    """
+    print("Please enter votes data from the last search.")
+    print("Data should be 5 numbers, separated by commas.")
+    print("Assumption: 50,100,120,140,200,\n")
 
-data = votes.get_all_values()
+    data_str = input("Enter your data here: ")
+    votes_data = data_str.split(",")
+    validate_data(votes_data)
 
-print(data)
+def validate_data(values):
+    """
+    Converts string values ​​to integers.
+    Raises ValueError if strings cannot be converted into int,
+    or if there aren't exactly 5 values.
+    """
+    try:
+        if len(values) != 5:
+            raise ValueError(
+                f"Exactly 5 values required, you provided {len(values)}"
+            )
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
+    
+get_votes_data()
