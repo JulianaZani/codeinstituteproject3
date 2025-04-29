@@ -17,28 +17,36 @@ SHEET = GSPREAD_CLIENT.open('project03')
 
 def get_votes_data():
     """
-    Get votes figures input from the user.
+    Get votes data input from the user and validate it.
     """
-    print("Please enter votes data from the last search.")
-    print("Data should be 5 numbers, separated by commas.")
-    print("Assumption: 50,100,120,140,200,\n")
+    while True:
+        print("Please enter votes data from the last search.")
+        print("Data should be 5 numbers, separated by commas.")
+        print("Assumption: 50,100,120,140,200,\n")
 
-    data_str = input("Enter your data here: ")
-    votes_data = data_str.split(",")
-    validate_data(votes_data)
+        data_str = input("Enter your data here: ")
+        votes_data = data_str.split(",")
+        
+        if validate_data(votes_data):
+            print("Data is valid!\n")
+            break
 
 def validate_data(values):
     """
     Converts string values ​​to integers.
-    Raises ValueError if strings cannot be converted into int,
-    or if there aren't exactly 5 values.
+    Raises ValueError if there aren't exactly 5 values
+    or if any value cannot be converted to an integer.
     """
     try:
         if len(values) != 5:
             raise ValueError(
                 f"Exactly 5 values required, you provided {len(values)}"
             )
+        [int(value) for value in values]
+   
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
+        return False
+    return True
     
 get_votes_data()
