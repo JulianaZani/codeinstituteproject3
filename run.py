@@ -15,8 +15,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPES)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('project03')
 
-sales = SHEET.worksheet('Votes')
+votes = SHEET.worksheet('Votes')
 
-data = sales.get_all_values()
+data = votes.get_all_values()
 
 print(data)
