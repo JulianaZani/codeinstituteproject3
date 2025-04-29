@@ -31,6 +31,9 @@ def get_votes_data():
             print("Data is valid!\n")
             break
 
+    int_data = [int(value.strip()) for value in votes_data]
+    return int_data
+
 def validate_data(values):
     """
     Converts string values ​​to integers.
@@ -42,11 +45,21 @@ def validate_data(values):
             raise ValueError(
                 f"Exactly 5 values required, you provided {len(values)}"
             )
-        [int(value) for value in values]
+        [int(value.strip()) for value in values]
    
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
         return False
     return True
-    
-get_votes_data()
+
+def update_votes_worksheet(data):
+    """
+    Update voting spreadsheet, add new row with new survey data.
+    """
+    print("Updating vote spreadsheet...\n")
+    votes_worksheet = SHEET.worksheet("Votes")
+    votes_worksheet.append_row(data)
+    print("Spreadsheet with votes successfully updated.\n")
+
+data = get_votes_data()
+update_votes_worksheet(data)
