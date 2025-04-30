@@ -61,5 +61,16 @@ def update_votes_worksheet(data):
     votes_worksheet.append_row(data)
     print("Spreadsheet with votes successfully updated.\n")
 
-data = get_votes_data()
-update_votes_worksheet(data)
+
+def main():
+    """
+    Main function to run the program.
+    """
+    print("Welcome to the voting data input program!\n")
+    print("This program will help you input your votes data into a spreadsheet.\n")
+    
+    # Get votes data from user
+    data = get_votes_data()
+    
+    # Update the votes worksheet with the new data
+    update_votes_worksheet(data)
