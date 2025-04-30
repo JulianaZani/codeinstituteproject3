@@ -15,12 +15,12 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPES)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('project03')
 
-def get_votes_data():
+def get_votes_data(prompt_title):
     """
     Get votes data input from the user and validate it.
     """
     while True:
-        print("Please enter votes data from the last search.")
+        print(prompt_title)
         print("Data should be 5 numbers, separated by commas.")
         print("Assumption: 50,100,120,140,200,\n")
 
@@ -58,34 +58,31 @@ def validate_data(values):
         return False
     return True
 
-def update_votes_worksheet(data):
+def update_worksheet(data, worksheet_name):
     """
-    Update voting spreadsheet, add new row with new survey data.
+    Update a specific worksheet with the provided data.
     """
-    print("Updating vote spreadsheet...\n")
-    
-    # Open the worksheet named "Votes"
-    # and append the new data as a new row
-    votes_worksheet = SHEET.worksheet("Votes")
-    votes_worksheet.append_row(data)
-
-    print("Spreadsheet with votes successfully updated.\n")
-
+    print(f"Updating '{worksheet_name}' worksheet...\n")
+    worksheet = SHEET.worksheet(worksheet_name)
+    worksheet.append_row(data)
+    print(f"'{worksheet_name}' worksheet successfully updated.\n")
 
 def main():
     """
-    Main function to run the program.
+    Main program execution.
     """
     print("Welcome to the voting data input program!\n")
-    print("This program will help you input your votes data into a spreadsheet.\n")
-    
-    # Get votes data from user
-    data = get_votes_data()
-    
-    # Update the votes worksheet with the new data
-    update_votes_worksheet(data)
+    print("This program collects data for both preferred and rejected candidates.\n")
 
-    print("Thank you for using the voting data input program!\n")   
+    # Get votes for preferred candidates
+    votes_data = get_votes_data("Question 1: Who would you vote for?")
+    update_worksheet(votes_data, "Votes")
+
+    # Get votes for candidates the user would never vote for
+    print("\nNow let's enter the data for the candidates you would never vote for:\n")
+    not_votes_data = get_votes_data("Question 2: Who would you never vote for?")
+    update_worksheet(not_votes_data, "DoNotVote")
+
+    print("Thank you! Both sets of data have been saved.\n")
 
 main()
-# The code is designed to take user input for voting data, validate it, and update a Google Sheets spreadsheet with the data.
