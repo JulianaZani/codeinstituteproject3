@@ -27,10 +27,12 @@ def get_votes_data():
         data_str = input("Enter your data here: ")
         votes_data = data_str.split(",")
         
+        # Validate input; repeat prompt if invalid
         if validate_data(votes_data):
             print("Data is valid!\n")
             break
 
+    # Convert input strings to integers before returning
     int_data = [int(value.strip()) for value in votes_data]
     return int_data
 
@@ -41,13 +43,17 @@ def validate_data(values):
     or if any value cannot be converted to an integer.
     """
     try:
+        # Check if there are exactly 5 values
         if len(values) != 5:
             raise ValueError(
                 f"Exactly 5 values required, you provided {len(values)}"
             )
+        
+        # Try converting each value to an integer
         [int(value.strip()) for value in values]
    
     except ValueError as e:
+        # Print error message and return False if validation fails
         print(f"Invalid data: {e}, please try again.\n")
         return False
     return True
@@ -57,8 +63,12 @@ def update_votes_worksheet(data):
     Update voting spreadsheet, add new row with new survey data.
     """
     print("Updating vote spreadsheet...\n")
+    
+    # Open the worksheet named "Votes"
+    # and append the new data as a new row
     votes_worksheet = SHEET.worksheet("Votes")
     votes_worksheet.append_row(data)
+
     print("Spreadsheet with votes successfully updated.\n")
 
 
@@ -74,3 +84,8 @@ def main():
     
     # Update the votes worksheet with the new data
     update_votes_worksheet(data)
+
+    print("Thank you for using the voting data input program!\n")   
+
+main()
+# The code is designed to take user input for voting data, validate it, and update a Google Sheets spreadsheet with the data.
