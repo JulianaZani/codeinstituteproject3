@@ -121,6 +121,17 @@ def update_summary_sheet(summary_data, worksheet_name='Summary'):
     for row in summary_data:
         worksheet.append_row(row)
 
+def display_percentages(headers, averages, title):
+    """
+    Display the averages as percentages in the terminal.
+    """
+    total = sum(averages)
+    print(f"\n{title}")
+    print("-" * len(title))
+    for name, avg in zip(headers, averages):
+        percentage = (avg / total) * 100 if total else 0
+        print(f"{name}: {percentage:.2f}%")
+
 # ------------------- Main Function ---------------------------
 
 def main():
@@ -153,5 +164,9 @@ def main():
 
     print("Thank you! Both sets of data have been saved.\n")
     print("Analytics and summary completed.\n")
+
+    display_percentages(vote_headers, avg_votes, "Average Votes (%) per Candidate")
+    display_percentages(vote_headers, avg_rejects, "Average Rejections (%) per Candidate")
+
 
 main()
