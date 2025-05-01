@@ -77,36 +77,25 @@ def get_all_data(worksheet_name):
     """
     worksheet = SHEET.worksheet(worksheet_name)
     data = worksheet.get_all_values()
-    return data
+    headers = data[0]
+    rows = data[1:]
+    return headers, [[int(value) for value in row] for row in rows]
 
-def calculate_column_averages(worksheet_name):
+def calculate_column_averages(data):
     """
     Calculate the average of each column in a specified worksheet.
     """
-    data = get_all_data(worksheet_name)
-    averages = []
-    
-    # Calculate average for each column
-    for col in range(len(data[0])):
-        col_data = [int(row[col]) for row in data[1:]]  # Skip header row
-        avg = sum(col_data) / len(col_data)
-        averages.append(avg)
+    transposed = list(zip(*data))
+    return [round(sum(col) / len(col), 2) for col in transposed]
 
-    return averages
-
-def update_averages_sheet(worksheet_name, averages):
+def update_averages_sheet(headers, averages, worksheet_name='Averages'):
     """
     Update the averages worksheet with the calculated averages.
     """
-    print(f"Updating '{worksheet_name}' worksheet with averages...\n")
     worksheet = SHEET.worksheet(worksheet_name)
-    
-    # Clear existing data
     worksheet.clear()
-    
-    # Write new averages to the worksheet
-    worksheet.append_row(["Average"] + averages)
-    print(f"'{worksheet_name}' worksheet successfully updated with averages.\n")
+    worksheet.append_row(headers)
+    worksheet.append_row(averages)
 
 # ------------------- Main Function ---------------------------
 
@@ -126,6 +115,16 @@ def main():
     not_votes_data = get_votes_data("Question 2: Who would you never vote for?")
     update_worksheet(not_votes_data, "DoNotVote")
 
+    # Automatic analysis
+    vote_headers, vote_data = get_all_data("Votes")
+    _, reject_data = get_all_data("DoNotVote")
+
+    avg_votes = calculate_column_averages(vote_data)
+    avg_rejects = calculate_column_averages(reject_data)
+
+    update_averages_sheet(vote_headers, avg_votes)
+
     print("Thank you! Both sets of data have been saved.\n")
+    print("Analytics and summary completed.\n")
 
 main()
