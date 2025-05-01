@@ -97,6 +97,30 @@ def update_averages_sheet(headers, averages, worksheet_name='Averages'):
     worksheet.append_row(headers)
     worksheet.append_row(averages)
 
+def generate_summary(headers, avg_votes, avg_rejects):
+    """
+    Generate a summary with top voted and most rejected candidates.
+    """
+    most_voted_index = avg_votes.index(max(avg_votes))
+    most_rejected_index = avg_rejects.index(max(avg_rejects))
+
+    summary_data = [
+        ["Top Voted Candidate", headers[most_voted_index], avg_votes[most_voted_index]],
+        ["Most Rejected Candidate", headers[most_rejected_index], avg_rejects[most_rejected_index]],
+    ]
+
+    return summary_data
+
+def update_summary_sheet(summary_data, worksheet_name='Summary'):
+    """
+    Update the summary worksheet with the generated summary data.
+    """
+    worksheet = SHEET.worksheet(worksheet_name)
+    worksheet.clear()
+    worksheet.append_row(["Description", "Candidate", "Average"])
+    for row in summary_data:
+        worksheet.append_row(row)
+
 # ------------------- Main Function ---------------------------
 
 def main():
@@ -123,6 +147,9 @@ def main():
     avg_rejects = calculate_column_averages(reject_data)
 
     update_averages_sheet(vote_headers, avg_votes)
+
+    summary = generate_summary(vote_headers, avg_votes, avg_rejects)
+    update_summary_sheet(summary)
 
     print("Thank you! Both sets of data have been saved.\n")
     print("Analytics and summary completed.\n")
