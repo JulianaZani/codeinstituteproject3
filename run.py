@@ -79,6 +79,35 @@ def get_all_data(worksheet_name):
     data = worksheet.get_all_values()
     return data
 
+def calculate_column_averages(worksheet_name):
+    """
+    Calculate the average of each column in a specified worksheet.
+    """
+    data = get_all_data(worksheet_name)
+    averages = []
+    
+    # Calculate average for each column
+    for col in range(len(data[0])):
+        col_data = [int(row[col]) for row in data[1:]]  # Skip header row
+        avg = sum(col_data) / len(col_data)
+        averages.append(avg)
+
+    return averages
+
+def update_averages_sheet(worksheet_name, averages):
+    """
+    Update the averages worksheet with the calculated averages.
+    """
+    print(f"Updating '{worksheet_name}' worksheet with averages...\n")
+    worksheet = SHEET.worksheet(worksheet_name)
+    
+    # Clear existing data
+    worksheet.clear()
+    
+    # Write new averages to the worksheet
+    worksheet.append_row(["Average"] + averages)
+    print(f"'{worksheet_name}' worksheet successfully updated with averages.\n")
+
 # ------------------- Main Function ---------------------------
 
 def main():
