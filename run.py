@@ -15,6 +15,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPES)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('project03')
 
+# -------------- Data Entry Functions ---------------------------
+
 def get_votes_data(prompt_title):
     """
     Get votes data input from the user and validate it.
@@ -66,6 +68,18 @@ def update_worksheet(data, worksheet_name):
     worksheet = SHEET.worksheet(worksheet_name)
     worksheet.append_row(data)
     print(f"'{worksheet_name}' worksheet successfully updated.\n")
+
+# -------------- Analysis Functions ---------------------------
+
+def get_all_data(worksheet_name):
+    """
+    Retrieve all data from a specified worksheet.
+    """
+    worksheet = SHEET.worksheet(worksheet_name)
+    data = worksheet.get_all_values()
+    return data
+
+# ------------------- Main Function ---------------------------
 
 def main():
     """
