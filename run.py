@@ -107,12 +107,12 @@ def main():
     print("This program collects data for both preferred and rejected candidates.\n")
 
     # Get votes for preferred candidates
-    votes_data = get_votes_data("Question 1: Who would you vote for?")
+    votes_data = get_votes_data("Question 1: Who would you vote for as mayor of Code City?")
     update_worksheet(votes_data, "Votes")
 
     # Get votes for candidates the user would never vote for
     print("\nNow let's enter the data for the candidates you would never vote for:\n")
-    not_votes_data = get_votes_data("Question 2: Who would you never vote for?")
+    not_votes_data = get_votes_data("Question 2: Who would you never vote for as mayor of Code City?")
     update_worksheet(not_votes_data, "DoNotVote")
 
     # Automatic analysis
