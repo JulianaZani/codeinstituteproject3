@@ -64,9 +64,9 @@ def update_worksheet(data, worksheet_name):
     """
     Update a specific worksheet with the provided data.
     """
-    print(f"Updating '{worksheet_name}' worksheet...\n")
+    print(f"Updating '{worksheet_name}' worksheet...\n")# Notify which worksheet is being updated
     worksheet = SHEET.worksheet(worksheet_name)
-    worksheet.append_row(data)
+    worksheet.append_row(data) # Add the new data row at the end
     print(f"'{worksheet_name}' worksheet successfully updated.\n")
 
 # -------------- Analysis Functions ---------------------------
@@ -77,16 +77,17 @@ def get_all_data(worksheet_name):
     """
     worksheet = SHEET.worksheet(worksheet_name)
     data = worksheet.get_all_values()
-    headers = data[0]
-    rows = data[1:]
+    headers = data[0] # First row: column names
+    rows = data[1:] # Remaining rows: data
+    # Convert string values to integers
     return headers, [[int(value) for value in row] for row in rows]
 
 def calculate_column_averages(data):
     """
     Calculate the average of each column in a specified worksheet.
     """
-    transposed = list(zip(*data))
-    return [round(sum(col) / len(col), 2) for col in transposed]
+    transposed = list(zip(*data))# Convert rows to columns for averaging
+    return [round(sum(col) / len(col), 2) for col in transposed]# Calculate average for each column
 
 def update_averages_sheet(headers, averages, worksheet_name='Averages'):
     """
@@ -101,9 +102,10 @@ def generate_summary(headers, avg_votes, avg_rejects):
     """
     Generate a summary with top voted and most rejected candidates.
     """
-    most_voted_index = avg_votes.index(max(avg_votes))
-    most_rejected_index = avg_rejects.index(max(avg_rejects))
-
+    most_voted_index = avg_votes.index(max(avg_votes)) # Highest vote average
+    most_rejected_index = avg_rejects.index(max(avg_rejects)) # Highest rejection average
+    
+    # Create summary data
     summary_data = [
         ["Top Voted Candidate", headers[most_voted_index], avg_votes[most_voted_index]],
         ["Most Rejected Candidate", headers[most_rejected_index], avg_rejects[most_rejected_index]],
@@ -117,7 +119,8 @@ def update_summary_sheet(summary_data, worksheet_name='Summary'):
     """
     worksheet = SHEET.worksheet(worksheet_name)
     worksheet.clear()
-    worksheet.append_row(["Description", "Candidate", "Average"])
+    worksheet.append_row(["Description", "Candidate", "Average"]) # Add headers
+
     for row in summary_data:
         worksheet.append_row(row)
 
@@ -151,6 +154,7 @@ def main():
     update_worksheet(not_votes_data, "DoNotVote")
 
     # Automatic analysis
+    # Load all data and calculate averages
     vote_headers, vote_data = get_all_data("Votes")
     _, reject_data = get_all_data("DoNotVote")
 
@@ -158,10 +162,12 @@ def main():
     avg_rejects = calculate_column_averages(reject_data)
 
     update_averages_sheet(vote_headers, avg_votes)
-
+    
+    # Generate summary and update the summary worksheet
     summary = generate_summary(vote_headers, avg_votes, avg_rejects)
     update_summary_sheet(summary)
-
+    
+    # Show results in terminal
     print("Thank you! Both sets of data have been saved.\n")
     print("Analytics and summary completed.\n")
 
