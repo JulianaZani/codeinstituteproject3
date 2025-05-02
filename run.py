@@ -31,7 +31,7 @@ def get_votes_data(prompt_title):
     while True:
         print(prompt_title)
         print("Data should be 5 numbers, separated by commas.")
-        print("Assumption: 50,100,120,140,200,\n")
+        print("Example: 50,100,120,140,200\n")
 
         data_str = input("Enter your data here: ")
         votes_data = data_str.split(",")
