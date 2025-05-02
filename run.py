@@ -1,8 +1,15 @@
 # Your code goes here.
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
+# Description:
+# This script collects voting and rejection data for candidates,
+# stores the data in Google Sheets, calculates averages,
+# identifies top/rejected candidates, and shows percentage charts.
+
 import gspread
 from google.oauth2.service_account import Credentials
+
+# -------------- Google Sheets Setup ---------------------------
 
 SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
