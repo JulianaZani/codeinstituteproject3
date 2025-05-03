@@ -45,23 +45,22 @@ def get_votes_data(prompt_title):
 
 def validate_data(values):
     """
-    Converts string values ​​to integers.
-    Raises ValueError if there aren't exactly 5 values
-    or if any value cannot be converted to an integer.
+    Validates the user input data:
+    - Checks if exactly 5 values were provided
+    - Checks if all values can be converted to integers
     """
-    try:
-        
-        if len(values) != 5:
-            raise ValueError(
-                f"Exactly 5 values required, you provided {len(values)}"
-            )
-        
-        [int(value.strip()) for value in values]
-   
-    except ValueError as e:
-        print(f"Invalid data: {e}, please try again.\n")
+    if len(values) != 5:
+        print(f"Invalid data: Exactly 5 values are required, you provided {len(values)}.\n")
         return False
+
+    try:
+        [int(value.strip()) for value in values]
+    except ValueError:
+        print("Invalid data: All inputs must be numbers. Please try again.\n")
+        return False
+
     return True
+
 
 def update_worksheet(data, worksheet_name):
     """
