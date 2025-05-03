@@ -36,12 +36,10 @@ def get_votes_data(prompt_title):
         data_str = input("Enter your data here: ")
         votes_data = data_str.split(",")
         
-        # Validate input; repeat prompt if invalid
         if validate_data(votes_data):
             print("Data is valid!\n")
             break
 
-    # Convert input strings to integers before returning
     int_data = [int(value.strip()) for value in votes_data]
     return int_data
 
@@ -52,17 +50,15 @@ def validate_data(values):
     or if any value cannot be converted to an integer.
     """
     try:
-        # Check if there are exactly 5 values
+        
         if len(values) != 5:
             raise ValueError(
                 f"Exactly 5 values required, you provided {len(values)}"
             )
         
-        # Try converting each value to an integer
         [int(value.strip()) for value in values]
    
     except ValueError as e:
-        # Print error message and return False if validation fails
         print(f"Invalid data: {e}, please try again.\n")
         return False
     return True
@@ -71,9 +67,9 @@ def update_worksheet(data, worksheet_name):
     """
     Update a specific worksheet with the provided data.
     """
-    print(f"Updating '{worksheet_name}' worksheet...\n")# Notify which worksheet is being updated
+    print(f"Updating '{worksheet_name}' worksheet...\n")
     worksheet = SHEET.worksheet(worksheet_name)
-    worksheet.append_row(data) # Add the new data row at the end
+    worksheet.append_row(data) 
     print(f"'{worksheet_name}' worksheet successfully updated.\n")
 
 # -------------- Analysis Functions ---------------------------
@@ -84,17 +80,17 @@ def get_all_data(worksheet_name):
     """
     worksheet = SHEET.worksheet(worksheet_name)
     data = worksheet.get_all_values()
-    headers = data[0] # First row: column names
-    rows = data[1:] # Remaining rows: data
-    # Convert string values to integers
+    headers = data[0] 
+    rows = data[1:] 
+    
     return headers, [[int(value) for value in row] for row in rows]
 
 def calculate_column_averages(data):
     """
     Calculate the average of each column in a specified worksheet.
     """
-    transposed = list(zip(*data))# Convert rows to columns for averaging
-    return [round(sum(col) / len(col), 2) for col in transposed]# Calculate average for each column
+    transposed = list(zip(*data))
+    return [round(sum(col) / len(col), 2) for col in transposed]
 
 def update_averages_sheet(headers, averages, worksheet_name='Averages'):
     """
@@ -109,10 +105,9 @@ def generate_summary(headers, avg_votes, avg_rejects):
     """
     Generate a summary with top voted and most rejected candidates.
     """
-    most_voted_index = avg_votes.index(max(avg_votes)) # Highest vote average
-    most_rejected_index = avg_rejects.index(max(avg_rejects)) # Highest rejection average
+    most_voted_index = avg_votes.index(max(avg_votes)) 
+    most_rejected_index = avg_rejects.index(max(avg_rejects)) 
     
-    # Create summary data
     summary_data = [
         ["Top Voted Candidate", headers[most_voted_index], avg_votes[most_voted_index]],
         ["Most Rejected Candidate", headers[most_rejected_index], avg_rejects[most_rejected_index]],
@@ -126,7 +121,7 @@ def update_summary_sheet(summary_data, worksheet_name='Summary'):
     """
     worksheet = SHEET.worksheet(worksheet_name)
     worksheet.clear()
-    worksheet.append_row(["Description", "Candidate", "Average"]) # Add headers
+    worksheet.append_row(["Description", "Candidate", "Average"]) 
 
     for row in summary_data:
         worksheet.append_row(row)
@@ -151,17 +146,13 @@ def main():
     print("Welcome to the voting data input program!\n")
     print("This program collects data for both preferred and rejected candidates.\n")
 
-    # Get votes for preferred candidates
     votes_data = get_votes_data("How many votes did each candidate for mayor of Code City get?")
     update_worksheet(votes_data, "Votes")
 
-    # Get votes for candidates the user would never vote for
     print("\nNow let's enter the data for the candidates you would never vote for:\n")
     not_votes_data = get_votes_data("How many rejection votes did each candidate get?")
     update_worksheet(not_votes_data, "DoNotVote")
 
-    # Automatic analysis
-    # Load all data and calculate averages
     vote_headers, vote_data = get_all_data("Votes")
     _, reject_data = get_all_data("DoNotVote")
 
@@ -170,11 +161,9 @@ def main():
 
     update_averages_sheet(vote_headers, avg_votes)
     
-    # Generate summary and update the summary worksheet
     summary = generate_summary(vote_headers, avg_votes, avg_rejects)
     update_summary_sheet(summary)
     
-    # Show results in terminal
     print("Thank you! Both sets of data have been saved.\n")
     print("Analytics and summary completed.\n")
 
