@@ -24,7 +24,9 @@ Additionally, the script identifies the most voted and most rejected candidates 
 
 The user interaction is clear and educational, making the process intuitive even for those with little technical experience.
 
-**Future features**
+**Future features**  
+
+Among several possible implementations, in the future I intend to implement data visualization using graphs to help users better interpret the results. I will seek improvements to make the program more robust, easy to use and suitable for a wider range of real-world applications.
 
 
 ## Data Model  
