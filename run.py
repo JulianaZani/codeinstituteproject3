@@ -33,9 +33,14 @@ def get_votes_data(prompt_title):
         print("Data should be 5 numbers, separated by commas.")
         print("Example: 50,100,120,140,200\n")
 
-        data_str = input("Enter your data here: ")
+        data_str = input("Enter your data here: ").strip()
+
+        if not data_str:
+            print("No input provided. Please enter 5 numbers separated by commas.\n")
+            continue
+
         votes_data = data_str.split(",")
-        
+
         if validate_data(votes_data):
             print("Data is valid!\n")
             break
@@ -50,8 +55,6 @@ def validate_data(values):
     - Checks if exactly 5 values were provided
     - Checks if all values can be converted to integers
     """
-    cleaned_values = [v.strip() for v in values if v.strip() != ""]
-    
     if len(values) != 5:
         print(f"Invalid data: Exactly 5 values are required, you provided {len(values)} data.\n")
         return False
