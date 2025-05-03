@@ -8,8 +8,38 @@ It was created as part of the Code Institute learning journey and aims to simula
 This script collects data regarding the most and least voted candidates.
 The goal is to help analyze electoral preferences by calculating column averages, identifying the top-voted and most-rejected candidates, and displaying percentage charts.  
 
-It integrates with Google Sheets using the gspread and google-auth libraries.
+It integrates with Google Sheets using the gspread and google-auth libraries.  
 
+## How to Use  
+
+
+## Features  
+
+**Existing features**  
+This project was developed to allow users to input, store, and analyze voting and rejection data for candidates directly through the terminal. When the program runs, the user is guided by clear instructions on how to properly enter the data. After validating the input, the script sends the data to specific worksheets on Google Sheets, separating positive votes and rejection votes into different tabs.
+
+A key feature is the input validation system, which ensures that users provide exactly five numeric values separated by commas. If the input is invalid, informative error messages are displayed until the data is correctly formatted. Once the data is submitted, the program automatically retrieves all existing records from the spreadsheets, calculates the average votes and rejections for each candidate, and updates a worksheet with these averages.
+
+Additionally, the script identifies the most voted and most rejected candidates and generates a short analytical summary, which is also sent to the spreadsheet. Finally, the terminal displays the results as percentages, making it easy to visually understand the distribution of votes and rejections per candidate.
+
+The user interaction is clear and educational, making the process intuitive even for those with little technical experience.
+
+**Future features**
+
+
+## Data Model  
+
+
+## Testing  
+
+**Manual Testing**  
+
+**Validator Testing**  
+
+
+## Deployment  
+
+## Credits  
 
 
 
