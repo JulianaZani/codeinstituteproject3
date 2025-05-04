@@ -43,6 +43,13 @@ Among several possible implementations, in the future I intend to implement data
 - Output was reviewed for clarity and usability in the terminal.  
 
 **Validator Testing**  
+- No errors were returned from PEP8 validator anymore.
+
+**BEFORE**  
+![pep8before](doc/screenshots/screenshotpep801.png)
+
+**AFTER**  
+![pep8after](doc/screenshots/screenshotpep802.png)
 
 
 ## Deployment  
