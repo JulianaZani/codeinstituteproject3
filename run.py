@@ -146,34 +146,39 @@ def display_percentages(headers, averages, title):
 
 def main():
     """
-    Main program execution.
+    Main program execution with option to repeat.
     """
     print("Welcome to the voting data input program!\n")
     print("This program collects data for both preferred and rejected candidates.\n")
 
-    votes_data = get_votes_data("How many votes did each candidate for mayor of Code City get?")
-    update_worksheet(votes_data, "Votes")
+    while True:
+        votes_data = get_votes_data("How many votes did each candidate for mayor of Code City get?")
+        update_worksheet(votes_data, "Votes")
 
-    print("\nNow let's enter the data for the candidates you would never vote for:\n")
-    not_votes_data = get_votes_data("How many rejection votes did each candidate get?")
-    update_worksheet(not_votes_data, "DoNotVote")
+        print("\nNow let's enter the data for the candidates you would never vote for:\n")
+        not_votes_data = get_votes_data("How many rejection votes did each candidate get?")
+        update_worksheet(not_votes_data, "DoNotVote")
 
-    vote_headers, vote_data = get_all_data("Votes")
-    _, reject_data = get_all_data("DoNotVote")
+        vote_headers, vote_data = get_all_data("Votes")
+        _, reject_data = get_all_data("DoNotVote")
 
-    avg_votes = calculate_column_averages(vote_data)
-    avg_rejects = calculate_column_averages(reject_data)
+        avg_votes = calculate_column_averages(vote_data)
+        avg_rejects = calculate_column_averages(reject_data)
 
-    update_averages_sheet(vote_headers, avg_votes)
-    
-    summary = generate_summary(vote_headers, avg_votes, avg_rejects)
-    update_summary_sheet(summary)
-    
-    print("Thank you! Both sets of data have been saved.\n")
-    print("Analytics and summary completed.\n")
+        update_averages_sheet(vote_headers, avg_votes)
+        
+        summary = generate_summary(vote_headers, avg_votes, avg_rejects)
+        update_summary_sheet(summary)
+        
+        print("Thank you! Both sets of data have been saved.\n")
+        print("Analytics and summary completed.\n")
 
-    display_percentages(vote_headers, avg_votes, "Average Votes (%) per Candidate")
-    display_percentages(vote_headers, avg_rejects, "Average Rejections (%) per Candidate")
+        display_percentages(vote_headers, avg_votes, "Average Votes (%) per Candidate")
+        display_percentages(vote_headers, avg_rejects, "Average Rejections (%) per Candidate")
 
+        repeat = input("\nDo you want to enter more data? (yes/no): ").strip().lower()
+        if repeat not in ["yes", "y"]:
+            print("Goodbye! Thank you for using the voting data program.")
+            break
 
 main()
