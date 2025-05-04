@@ -6,8 +6,18 @@
 # stores the data in Google Sheets, calculates averages,
 # identifies top/rejected candidates, and shows percentage charts.
 
+import os
+import platform
 import gspread
 from google.oauth2.service_account import Credentials
+
+# -------------- Clear Screen Function -------------------------
+
+def clear_console():
+    if platform.system() == "Windows":
+        os.system('cls')
+    else:
+        os.system('clear')
 
 # -------------- Google Sheets Setup ---------------------------
 
@@ -148,6 +158,7 @@ def main():
     """
     Main program execution with option to repeat.
     """
+    clear_console()
     print("Welcome to the voting data input program!\n")
     print("This program collects data for both preferred and rejected candidates.\n")
 
@@ -173,8 +184,12 @@ def main():
         print("Thank you! Both sets of data have been saved.\n")
         print("Analytics and summary completed.\n")
 
+        input("\nPress Enter to view candidates and vote percentages...")
+
         display_percentages(vote_headers, avg_votes, "Average Votes (%) per Candidate")
         display_percentages(vote_headers, avg_rejects, "Average Rejections (%) per Candidate")
+
+        input("\nPress Enter to continue...")
 
         repeat = input("\nDo you want to enter more data? (yes/no): ").strip().lower()
         if repeat not in ["yes", "y"]:
