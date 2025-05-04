@@ -13,6 +13,7 @@ from google.oauth2.service_account import Credentials
 
 # -------------- Clear Screen Function -------------------------
 
+
 def clear_console():
     if platform.system() == "Windows":
         os.system('cls')
@@ -20,6 +21,7 @@ def clear_console():
         os.system('clear')
 
 # -------------- Google Sheets Setup ---------------------------
+
 
 SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -33,6 +35,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('project03')
 
 # -------------- Data Entry Functions ---------------------------
+
 
 def get_votes_data(prompt_title):
     """
@@ -58,6 +61,7 @@ def get_votes_data(prompt_title):
     int_data = [int(value.strip()) for value in votes_data]
     return int_data
 
+
 def validate_data(values):
     """
     Validates the user input data:
@@ -66,7 +70,8 @@ def validate_data(values):
     - Checks if all values can be converted to integers
     """
     if len(values) != 5:
-        print(f"Invalid data: Exactly 5 values are required, you provided {len(values)} data.\n")
+        print(
+            f"Invalid data: Exactly 5 values are required, you provided {len(values)} data.\n")
         return False
 
     try:
@@ -84,12 +89,13 @@ def update_worksheet(data, worksheet_name):
     """
     print(f"Updating '{worksheet_name}' worksheet...\n")
     worksheet = SHEET.worksheet(worksheet_name)
-    worksheet.append_row(data) 
+    worksheet.append_row(data)
     print(f"'{worksheet_name}' worksheet successfully updated.\n")
     input("\nPress Enter to continue...")
     print("Please wait while we process the data...\n")
 
 # -------------- Analysis Functions ---------------------------
+
 
 def get_all_data(worksheet_name):
     """
@@ -97,10 +103,11 @@ def get_all_data(worksheet_name):
     """
     worksheet = SHEET.worksheet(worksheet_name)
     data = worksheet.get_all_values()
-    headers = data[0] 
-    rows = data[1:] 
-    
+    headers = data[0]
+    rows = data[1:]
+
     return headers, [[int(value) for value in row] for row in rows]
+
 
 def calculate_column_averages(data):
     """
@@ -108,6 +115,7 @@ def calculate_column_averages(data):
     """
     transposed = list(zip(*data))
     return [round(sum(col) / len(col), 2) for col in transposed]
+
 
 def update_averages_sheet(headers, averages, worksheet_name='Averages'):
     """
@@ -118,19 +126,24 @@ def update_averages_sheet(headers, averages, worksheet_name='Averages'):
     worksheet.append_row(headers)
     worksheet.append_row(averages)
 
+
 def generate_summary(headers, avg_votes, avg_rejects):
     """
     Generate a summary with top voted and most rejected candidates.
     """
-    most_voted_index = avg_votes.index(max(avg_votes)) 
-    most_rejected_index = avg_rejects.index(max(avg_rejects)) 
-    
-    summary_data = [
-        ["Top Voted Candidate", headers[most_voted_index], avg_votes[most_voted_index]],
-        ["Most Rejected Candidate", headers[most_rejected_index], avg_rejects[most_rejected_index]],
-    ]
+    most_voted_index = avg_votes.index(max(avg_votes))
+    most_rejected_index = avg_rejects.index(max(avg_rejects))
+
+    summary_data = [["Top Voted Candidate",
+                     headers[most_voted_index],
+                     avg_votes[most_voted_index]],
+                    ["Most Rejected Candidate",
+                     headers[most_rejected_index],
+                     avg_rejects[most_rejected_index]],
+                    ]
 
     return summary_data
+
 
 def update_summary_sheet(summary_data, worksheet_name='Summary'):
     """
@@ -138,10 +151,11 @@ def update_summary_sheet(summary_data, worksheet_name='Summary'):
     """
     worksheet = SHEET.worksheet(worksheet_name)
     worksheet.clear()
-    worksheet.append_row(["Description", "Candidate", "Average"]) 
+    worksheet.append_row(["Description", "Candidate", "Average"])
 
     for row in summary_data:
         worksheet.append_row(row)
+
 
 def display_percentages(headers, averages, title):
     """
@@ -156,6 +170,7 @@ def display_percentages(headers, averages, title):
 
 # ------------------- Main Function ---------------------------
 
+
 def main():
     """
     Main program execution with option to repeat.
@@ -165,12 +180,14 @@ def main():
     print("This program collects data for both preferred and rejected candidates.\n")
 
     while True:
-        votes_data = get_votes_data("How many votes did each candidate for mayor of Code City get?")
+        votes_data = get_votes_data(
+            "How many votes did each candidate for mayor of Code City get?")
         update_worksheet(votes_data, "Votes")
 
         clear_console()
         print("\nNow let's enter the data for the candidates you would never vote for:\n")
-        not_votes_data = get_votes_data("How many rejection votes did each candidate get?")
+        not_votes_data = get_votes_data(
+            "How many rejection votes did each candidate get?")
         update_worksheet(not_votes_data, "DoNotVote")
 
         vote_headers, vote_data = get_all_data("Votes")
@@ -180,22 +197,30 @@ def main():
         avg_rejects = calculate_column_averages(reject_data)
 
         update_averages_sheet(vote_headers, avg_votes)
-        
+
         summary = generate_summary(vote_headers, avg_votes, avg_rejects)
         update_summary_sheet(summary)
-        
+
         print("Thank you! Both sets of data have been saved.\n")
         print("Analytics and summary completed.\n")
 
         input("\nPress Enter to continue...")
         clear_console()
 
-        display_percentages(vote_headers, avg_votes, "Average Votes (%) per Candidate")
-        display_percentages(vote_headers, avg_rejects, "Average Rejections (%) per Candidate")
+        display_percentages(
+            vote_headers,
+            avg_votes,
+            "Average Votes (%) per Candidate")
+        display_percentages(
+            vote_headers,
+            avg_rejects,
+            "Average Rejections (%) per Candidate")
 
-        repeat = input("\nDo you want to enter more data? (yes/no): ").strip().lower()
+        repeat = input(
+            "\nDo you want to enter more data? (yes/no): ").strip().lower()
         if repeat not in ["yes", "y"]:
             print("Goodbye! Thank you for using the voting data program.")
             break
+
 
 main()
