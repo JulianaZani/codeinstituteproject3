@@ -187,6 +187,9 @@ def main():
         print("Thank you! Both sets of data have been saved.\n")
         print("Analytics and summary completed.\n")
 
+        input("\nPress Enter to continue...")
+        clear_console()
+
         display_percentages(vote_headers, avg_votes, "Average Votes (%) per Candidate")
         display_percentages(vote_headers, avg_rejects, "Average Rejections (%) per Candidate")
 
