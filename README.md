@@ -1,7 +1,7 @@
 # Voting and Rejection Data Analyzer  
 
 This terminal-based application allows users to input voting and rejection data for candidates, store the data in Google Sheets, and automatically analyze results with averages, top candidates, and summary percentages.  
-It was created as part of the Code Institute learning journey and aims to simulate a real-world data collection and reporting process using Python and cloud-based spreadsheets.
+
 
 ## Description  
 
@@ -9,8 +9,6 @@ This script collects data regarding the most and least voted candidates.
 The goal is to help analyze electoral preferences by calculating column averages, identifying the top-voted and most-rejected candidates, and displaying percentage charts.  
 
 It integrates with Google Sheets using the gspread and google-auth libraries.  
-
-## How to Use  
 
 
 ## Features  
@@ -29,6 +27,9 @@ The user interaction is clear and educational, making the process intuitive even
 Among several possible implementations, in the future I intend to implement data visualization using graphs to help users better interpret the results. I will seek improvements to make the program more robust, easy to use and suitable for a wider range of real-world applications.
 
 
+## How to Use  
+
+
 ## Data Model  
 
 
@@ -36,10 +37,16 @@ Among several possible implementations, in the future I intend to implement data
 
 **Manual Testing**  
 
+- All data inputs were validated to reject incorrect or incomplete formats.  
+- Successfully tested reading and writing to Google Sheets.  
+- Ensured calculations of averages and percentages return expected results.  
+- Output was reviewed for clarity and usability in the terminal.  
+
 **Validator Testing**  
 
 
 ## Deployment  
+
 
 ## Credits  
 
