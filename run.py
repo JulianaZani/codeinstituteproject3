@@ -50,9 +50,9 @@ def get_votes_data(prompt_title):
 
         if not data_str:
             print(
-                "No input provided. Please enter 5 numbers separated \
-            by commas.\n"
-                 )
+                "No input provided." 
+                "Please enter 5 numbers separated by commas.\n"
+            )
             continue
 
         votes_data = data_str.split(",")
@@ -74,18 +74,18 @@ def validate_data(values):
     """
     if len(values) != 5:
         print(
-            f"Invalid data: Exactly 5 values are required, \
-            you provided {len(values)} data.\n"
-            )
+            f"Invalid data: Exactly 5 values are required," 
+            f"you provided {len(values)} data.\n"
+        )
         return False
 
     try:
         [int(value.strip()) for value in values]
     except ValueError:
         print(
-            "Invalid data: All inputs must be numbers. \
-             Please try again.\n"
-             )
+            "Invalid data: All inputs must be numbers."
+            "Please try again.\n"
+        )
         return False
 
     return True
@@ -185,18 +185,24 @@ def main():
     """
     clear_console()
     print("Welcome to the voting data input program!\n")
-    print("This program collects data for both preferred and rejected \
-          candidates.\n")
+    print(
+        "This program collects data for both"
+        "preferred and rejected candidates.\n"
+    )
 
     while True:
         votes_data = get_votes_data(
-            "How many votes did each candidate for mayor of Code City get?")
+            "How many votes did each candidate"
+            " for mayor of Code City get?"
+        )
         update_worksheet(votes_data, "Votes")
 
         clear_console()
+
         print(
-            "Now let's enter the data for the candidates you would never \
-        vote for:\n")
+            "Now let's enter the data for the candidates"
+            "you would never vote for:\n"
+        )
         not_votes_data = get_votes_data(
             "How many rejection votes did each candidate get?"
             )
@@ -213,12 +219,15 @@ def main():
         summary = generate_summary(vote_headers, avg_votes, avg_rejects)
         update_summary_sheet(summary)
 
-        print("Thank you! Both sets of data have been saved.\n")
+        print(
+            "Thank you!" 
+            "Both sets of data have been saved.\n"
+        )
 
         print("Analytics and summary completed.\n")
 
         input("\nPress Enter to continue...")
-        
+
         clear_console()
 
         display_percentages(
@@ -233,7 +242,10 @@ def main():
         repeat = input(
             "\nDo you want to enter more data? (yes/no): ").strip().lower()
         if repeat not in ["yes", "y"]:
-            print("Goodbye! Thank you for using the voting data program.")
+            print(
+                "Goodbye!" 
+                "Thank you for using the voting data program."
+            )
             break
 
 
