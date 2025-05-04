@@ -54,7 +54,7 @@ def get_votes_data(prompt_title):
 
         if not data_str:
             print(
-                "No input provided. " 
+                "No input provided. "
                 "Please enter 5 numbers separated by commas.\n"
             )
             continue
@@ -78,7 +78,7 @@ def validate_data(values):
     """
     if len(values) != 5:
         print(
-            f"Invalid data: Exactly 5 values are required, " 
+            f"Invalid data: Exactly 5 values are required, "
             f"you provided {len(values)} data.\n"
         )
         return False
@@ -158,7 +158,7 @@ def generate_summary(headers, avg_votes, avg_rejects):
                     ["Most Rejected Candidate",
                      headers[most_rejected_index],
                      avg_rejects[most_rejected_index]],
-    ]
+                    ]
 
     return summary_data
 
@@ -238,7 +238,7 @@ def main():
         update_summary_sheet(summary)
 
         print(
-            "Thank you! " 
+            "Thank you! "
             "Both sets of data have been saved.\n"
         )
 
@@ -268,7 +268,7 @@ def main():
         ).strip().lower()
         if repeat not in ["yes", "y"]:
             print(
-                "Goodbye! " 
+                "Goodbye! "
                 "Thank you for using the voting data program."
             )
             break
