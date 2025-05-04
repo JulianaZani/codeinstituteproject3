@@ -86,6 +86,8 @@ def update_worksheet(data, worksheet_name):
     worksheet = SHEET.worksheet(worksheet_name)
     worksheet.append_row(data) 
     print(f"'{worksheet_name}' worksheet successfully updated.\n")
+    input("\nPress Enter to continue...")
+    print("Please wait while we process the data...\n")
 
 # -------------- Analysis Functions ---------------------------
 
@@ -166,6 +168,7 @@ def main():
         votes_data = get_votes_data("How many votes did each candidate for mayor of Code City get?")
         update_worksheet(votes_data, "Votes")
 
+        clear_console()
         print("\nNow let's enter the data for the candidates you would never vote for:\n")
         not_votes_data = get_votes_data("How many rejection votes did each candidate get?")
         update_worksheet(not_votes_data, "DoNotVote")
@@ -184,12 +187,8 @@ def main():
         print("Thank you! Both sets of data have been saved.\n")
         print("Analytics and summary completed.\n")
 
-        input("\nPress Enter to view candidates and vote percentages...")
-
         display_percentages(vote_headers, avg_votes, "Average Votes (%) per Candidate")
         display_percentages(vote_headers, avg_rejects, "Average Rejections (%) per Candidate")
-
-        input("\nPress Enter to continue...")
 
         repeat = input("\nDo you want to enter more data? (yes/no): ").strip().lower()
         if repeat not in ["yes", "y"]:
