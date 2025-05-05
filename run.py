@@ -44,13 +44,13 @@ def get_votes_data(prompt_title):
     while True:
         print(prompt_title)
         print(
-            "Data should be 5 numbers, separated by commas."
+            "Data should be 5 numbers, separated by commas.\n"
         )
         print(
             "Example: 50,100,120,140,200\n"
         )
 
-        data_str = input("Enter your data here: ").strip()
+        data_str = input("Enter your data here: \n").strip()
 
         if not data_str:
             print(
@@ -107,7 +107,7 @@ def update_worksheet(data, worksheet_name):
     print(
         f"'{worksheet_name}' worksheet successfully updated.\n"
     )
-    input("\nPress Enter to continue...")
+    input("Press Enter to continue...\n")
     print(
         "Please wait while we process the data...\n"
     )
@@ -211,7 +211,7 @@ def main():
     while True:
         votes_data = get_votes_data(
             "How many votes did each candidate "
-            "for mayor of Code City get?"
+            "for mayor of Code City get?\n"
         )
         update_worksheet(votes_data, "Votes")
 
@@ -222,7 +222,7 @@ def main():
             "you would never vote for:\n"
         )
         not_votes_data = get_votes_data(
-            "How many rejection votes did each candidate get?"
+            "How many rejection votes did each candidate get?\n"
         )
         update_worksheet(not_votes_data, "DoNotVote")
 
@@ -247,7 +247,7 @@ def main():
         )
 
         input(
-            "\nPress Enter to continue..."
+            "Press Enter to continue...\n"
         )
 
         clear_console()
@@ -264,12 +264,12 @@ def main():
         )
 
         repeat = input(
-            "\nDo you want to enter more data? (yes/no): "
+            "Do you want to enter more data? (yes/no): \n"
         ).strip().lower()
         if repeat not in ["yes", "y"]:
             print(
                 "Goodbye! "
-                "Thank you for using the voting data program."
+                "Thank you for using the voting data program.\n"
             )
             break
 
