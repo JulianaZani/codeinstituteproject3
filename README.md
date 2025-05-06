@@ -23,7 +23,6 @@ Additionally, the script identifies the most voted and most rejected candidates 
 The user interaction is clear and educational, making the process intuitive even for those with little technical experience.
 
 **Future features**  
-
 Among several possible implementations, in the future I intend to implement data visualization using graphs to help users better interpret the results. I will seek improvements to make the program more robust, easy to use and suitable for a wider range of real-world applications.
 
 
@@ -36,7 +35,6 @@ Among several possible implementations, in the future I intend to implement data
 ## Testing  
 
 **Manual Testing**  
-
 - All data inputs were validated to reject incorrect or incomplete formats.  
 - Successfully tested reading and writing to Google Sheets.  
 - Ensured calculations of averages and percentages return expected results.  
@@ -53,6 +51,20 @@ Among several possible implementations, in the future I intend to implement data
 
 
 ## Deployment  
+
+This project was deployed as per the guidance in Love Sandwiches Walkthrough Project.
+
+- Steps for deployment:
+
+  - Fork or clone this repository
+
+  - Create a new Heroku app
+
+  - Set the buildbacks to Python and NodeJS in that order
+
+  - Link the Heroku app to the repository
+
+  - Click on Deploy
 
 
 ## Credits  
