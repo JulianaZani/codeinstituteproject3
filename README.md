@@ -10,20 +10,7 @@ The goal is to help analyze electoral preferences by calculating column averages
 
 It integrates with Google Sheets using the gspread and google-auth libraries.  
 
-
-## Features  
-
-**Existing features**  
-This project was developed to allow users to input, store, and analyze voting and rejection data for candidates directly through the terminal. When the program runs, the user is guided by clear instructions on how to properly enter the data. After validating the input, the script sends the data to specific worksheets on Google Sheets, separating positive votes and rejection votes into different tabs.
-
-A key feature is the input validation system, which ensures that users provide exactly five numeric values separated by commas. If the input is invalid, informative error messages are displayed until the data is correctly formatted. Once the data is submitted, the program automatically retrieves all existing records from the spreadsheets, calculates the average votes and rejections for each candidate, and updates a worksheet with these averages.
-
-Additionally, the script identifies the most voted and most rejected candidates and generates a short analytical summary, which is also sent to the spreadsheet. Finally, the terminal displays the results as percentages, making it easy to visually understand the distribution of votes and rejections per candidate.
-
-The user interaction is clear and educational, making the process intuitive even for those with little technical experience.
-
-**Future features**  
-Among several possible implementations, in the future I intend to implement data visualization using graphs to help users better interpret the results. I will seek improvements to make the program more robust, easy to use and suitable for a wider range of real-world applications.
+## How to Use 
 
 
 ## Data Model  
@@ -95,8 +82,22 @@ The data model for this project is structured around Google Sheets, where voting
 - All values must be integers.
 - The program ensures that no empty or invalid data is processed.
 
+## Features  
 
-## How to Use  
+**Existing features**  
+This project was developed to allow users to input, store, and analyze voting and rejection data for candidates directly through the terminal. When the program runs, the user is guided by clear instructions on how to properly enter the data. After validating the input, the script sends the data to specific worksheets on Google Sheets, separating positive votes and rejection votes into different tabs.
+
+A key feature is the input validation system, which ensures that users provide exactly five numeric values separated by commas. If the input is invalid, informative error messages are displayed until the data is correctly formatted. Once the data is submitted, the program automatically retrieves all existing records from the spreadsheets, calculates the average votes and rejections for each candidate, and updates a worksheet with these averages.
+
+Additionally, the script identifies the most voted and most rejected candidates and generates a short analytical summary, which is also sent to the spreadsheet. Finally, the terminal displays the results as percentages, making it easy to visually understand the distribution of votes and rejections per candidate.
+
+The user interaction is clear and educational, making the process intuitive even for those with little technical experience.
+
+**Future features**  
+Among several possible implementations, in the future I intend to implement data visualization using graphs to help users better interpret the results. I will seek improvements to make the program more robust, easy to use and suitable for a wider range of real-world applications.
+
+
+ 
 
 ## Testing  
 
