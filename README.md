@@ -26,7 +26,7 @@ A new row with the data appears in the Vote worksheet and the next question disp
 
 ![secondquestion](doc/screenshots/screenshot03secondquestion.png)  
 
-The program informs that it is processing the data and ask to wait. 
+After the second set of data and validation the program informs that it is processing the data and ask to wait. 
 
 ![processmessage](doc/screenshots/screenshot04processmessage.png)  
 
@@ -144,8 +144,6 @@ The user interaction is clear and educational, making the process intuitive even
 Among several possible implementations, in the future I intend to implement data visualization using graphs to help users better interpret the results. I will seek improvements to make the program more robust, easy to use and suitable for a wider range of real-world applications.
 
 
- 
-
 ## Testing  
 
 **Manual Testing**  
@@ -179,3 +177,7 @@ This project was deployed as per the guidance in Love Sandwiches Walkthrough Pro
 
 ## Credits  
 
+- The Love Sandwiches Walkthrough Project was extremely important. It was through this project that I got inspiration for the Voting and Rejection Data Analyzer, which helped me develop the initial codes and deployment.
+- The overall structure of the project was thanks to classes at the Code Institute and research I did on the internet (YouTube, Google, ChatGPT, Copilot and GitHub).
+- Formatting using autopep8, the clear_console function and input("Press Enter to continue...\n") were great recommendations from my mentor David Bowers.
+- David also made me realize that I could also include an invalidation message when the program user pressed enter without entering data in the questionnaires that fill out the spreadsheet.
