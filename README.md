@@ -24,11 +24,40 @@ A new row with the data appears in the Vote worksheet and the next question disp
 
 ![voteworksheet](doc/screenshots/screenshot02voteworksheet.png)  
 
-![secondquestion](doc/screenshots/screenshot03secondquestion.png)
+![secondquestion](doc/screenshots/screenshot03secondquestion.png)  
 
+The program informs that it is processing the data and ask to wait. 
 
+![processmessage](doc/screenshots/screenshot04processmessage.png)  
 
+The program informs that both sets of data have been saved and asks the user to press "enter".  
 
+![datasaved](doc/screenshots/screenshot05datasaved.png)  
+
+Updated DoNotVote worksheet:
+
+![donotvoteworksheet](doc/screenshots/screenshot06donotvoteworksheet.png)  
+
+Information is displayed on the percentages of votes and rejections of candidates.  
+The user is asked if he/she wants to enter more information or finish.  
+When typing "yes" the system returns with the initial question.  
+When typing "no" the system ends with the phrase saying goodbye and thanks to the user.  
+
+![finalmessage](doc/screenshots/screenshot07finalmessage.png)  
+
+Updated Averages and Summary worksheets:  
+
+![averagesworksheet](doc/screenshots/screenshot08averagesworksheet.png)  
+
+![summaryworksheet](doc/screenshots/screenshot09summaryworksheet.png)  
+
+When the user tries to enter a quantity of numbers other than 5 or letters, the program displays messages informing that the data is invalid.
+
+![invalidmessagens](doc/screenshots/screenshot10invaliddatamessages.png)  
+
+By simply pressing enter, the user receives a message that no data was entered.  
+
+![notinputprovided](doc/screenshots/screenshot11notinputprovided.png) 
 
 
 ## Data Model  
