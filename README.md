@@ -1,6 +1,6 @@
 # Voting and Rejection Data Analyzer  
 
-This terminal-based application allows users to input voting and rejection data for candidates, store the data in Google Sheets, and automatically analyze results with averages, top candidates, and summary percentages.  
+Voting and Rejection Data Analyzer is a Python terminal data analyzer that allows users to input voting and rejection data for candidates, store the data in Google Sheets, and automatically analyze results with averages, top candidates, and summary percentages.  
 
 
 ## Description  
@@ -14,7 +14,7 @@ It integrates with Google Sheets using the gspread and google-auth libraries.
 
 When accessing the website " https://voting-data-analyzer-bed5d832188a.herokuapp.com/ " the program starts requesting the data.  
 
-![start](doc/screenshots/screenshot00inicial.png)  
+![start](doc/screenshots/screenshot00start.png)  
 
 After entering the 5 numbers as requested, the system informs whether the data is validated and asks for "enter" to continue.  
 
