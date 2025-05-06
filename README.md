@@ -10,7 +10,22 @@ The goal is to help analyze electoral preferences by calculating column averages
 
 It integrates with Google Sheets using the gspread and google-auth libraries.  
 
-## How to Use 
+## How to Use  
+
+When accessing the website " https://voting-data-analyzer-bed5d832188a.herokuapp.com/ " the program starts requesting the data.  
+![start](doc/screenshots/screenshot00inicial.png)  
+
+After entering the 5 numbers as requested, the system informs whether the data is validated and asks for "enter" to continue.  
+![entertocontinue](doc/screenshots/screenshot01validdata.png)  
+
+A new row with the data appears in the Vote worksheet and the next question displays.  
+![voteworksheet](doc/screenshots/screenshot02voteworksheet.png)  
+
+![secondquestion](doc/screenshots/screenshot03secondquestion.png)
+
+
+
+
 
 
 ## Data Model  
