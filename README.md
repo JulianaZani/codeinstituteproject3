@@ -31,17 +31,70 @@ Among several possible implementations, in the future I intend to implement data
 The data model for this project is structured around Google Sheets, where voting and rejection data are stored, processed, and analyzed. The structure is organized into multiple worksheets, each serving a specific purpose:  
 
 **Worksheets Structure**  
+- Votes Worksheet  
 
-- Votes Worksheet
+   - Stores the number of votes received by each candidate.  
+   - Each row represents a new data entry submitted by the user.  
+   - Columns correspond to individual candidates (Mary,Joseph, David, Deborah, None of them).  
 
-   - Stores the number of votes received by each candidate.
-   - Each row represents a new data entry submitted by the user.
-   - Columns correspond to individual candidates (Mary,Joseph, David, Deborah, None of them).
+- DoNotVote Worksheet  
 
-- DoNotVote Worksheet
+   - Stores the number of rejection votes (votes against) for each candidate.  
+   - Follows the same structure as the "Votes" worksheet, with rows representing new entries and columns corresponding to candidates.  
 
-   - Stores the number of rejection votes (votes against) for each candidate.
-   - Follows the same structure as the "Votes" worksheet, with rows representing new entries and columns corresponding to candidates.
+- Averages Worksheet
+
+   - Stores the calculated averages of votes and rejection votes for each candidate.  
+   - Contains two rows:  
+     - Row 1: Candidate names (headers).
+     - Row 2: Average values for each candidate.   
+
+- Summary Worksheet
+
+   - Provides a summary of the analysis, including:
+     - The top-voted candidate.
+     - The most-rejected candidate.
+     - Their respective average values.
+   - Contains three columns:
+     - Description: Indicates the type of data (Top Voted Candidate and Most Rejected Candidate).
+     - Candidate: The name of the candidate.
+     - Average: The average value associated with the candidate.
+
+**Data Flow**
+- Input:
+
+   - The user inputs data for both votes and rejection votes via the terminal.
+   - The input must consist of exactly 5 numeric values separated by commas.
+
+- Validation:
+
+   - The input is validated to ensure it contains exactly 5 numbers.
+   - Invalid inputs trigger error messages, prompting the user to re-enter the data.
+
+- Storage:
+
+   - Validated data is appended to the respective worksheets ("Votes" or "DoNotVote").
+
+- Processing:
+
+   - All data from the "Votes" and "DoNotVote" worksheets is retrieved.
+   - Averages are calculated for each candidate using column-wise data.
+
+- Analysis:
+
+   - The candidate with the highest average votes is identified as the "Top Voted Candidate."
+   - The candidate with the highest average rejection votes is identified as the "Most Rejected Candidate."
+   - A summary of these results is generated and stored in the "Summary" worksheet.     
+
+- Output:
+
+   - The program displays the averages as percentages in the terminal for both votes and rejection votes.
+
+**Validation Rules**
+- Input must consist of exactly 5 numeric values separated by commas.
+- All values must be integers.
+- The program ensures that no empty or invalid data is processed.
+
 
 ## How to Use  
 
