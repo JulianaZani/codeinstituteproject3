@@ -179,5 +179,5 @@ This project was deployed as per the guidance in Love Sandwiches Walkthrough Pro
 
 - The Love Sandwiches Walkthrough Project was extremely important. It was through this project that I got inspiration for the Voting and Rejection Data Analyzer, which helped me develop the initial codes and deployment.
 - The overall structure of the project was thanks to classes at the Code Institute and research I did on the internet (YouTube, Google, ChatGPT, Copilot and GitHub).
-- Formatting using autopep8, the clear_console function and input("Press Enter to continue...\n") were great recommendations from my mentor David Bowers.
-- David also made me realize that I could also include an invalidation message when the program user pressed enter without entering data in the questionnaires that fill out the spreadsheet.
+- Formatting using autopep8, the clear_console function, input("Press Enter to continue...\n") and the input at the end (loop system) were great recommendations from my mentor David Bowers.
+- Bowers also made me realize that I could also include an invalidation message when the program user pressed enter without entering data in the questionnaires that fill out the spreadsheet.
